@@ -4,7 +4,7 @@
     .text-center.mb-4
       p.h3 Sign UP
 
-    .form-label-group.text-left.mb-2
+    .form-label-group.mb-3
       label(for='name') Name
       input#name.form-control(
         v-model='name',
@@ -15,7 +15,7 @@
         required
       )
 
-    .form-label-group.mb-2
+    .form-label-group.mb-3
       label(for='email') Email
       input#email.form-control(
         type='email',
@@ -25,7 +25,7 @@
         required
       )
 
-    .form-label-group.mb-2
+    .form-label-group.mb-3
       label(for='password') Password
       input#password.form-control(
         type='password',

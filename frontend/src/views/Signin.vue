@@ -1,10 +1,10 @@
 <template lang="pug">
 .container.py-5
-  form.w-100(@submit.prevent.stop='handleSubmit')
+  form.w-100.text-left(@submit.prevent.stop='handleSubmit')
     .text-center.mb-4
-      p.h3.mb-3.font-weight-normal Sign in
+      p.h3.mb-3.font-weight-normal Sign In
 
-    .form-label-group.mb-2
+    .form-label-group.mb-3
       label(for='email') Email
       input#email.form-control(
         v-model='email',
@@ -15,7 +15,7 @@
         required,
         autofocus
       )
-    .form-label-group.mb-3
+    .form-label-group.mb-4
       label(for='password') Password
       input#password.form-control(
         v-model='password',
