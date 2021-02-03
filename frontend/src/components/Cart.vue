@@ -1,7 +1,8 @@
 <template lang="pug">
 .py-3
-  h1 Cart
+  h1 Cart ({{ cart.length }})
     i.fas.fa-shopping-cart
+  h3 $ {{ amount }}
   .w-100.crad-group
     .card.mb-3(v-for='item in cart', :key='item.id')
       .row.no-gutters
@@ -38,8 +39,6 @@
                   @click.prevent.stop='removeItem'
                 )
                   i.fas.fa-trash
-  .text-center
-    h3 $ {{ amount }}
 </template>
 
 <script>
@@ -72,16 +71,19 @@ export default {
   methods: {
     fetchData () {
       this.cart.push(this.addItem)
+      this.addItem = null
     },
     addOne (e) {
       const { id } = e.target.dataset
-      this.cart[id].quantity++
+      const target = this.cart.find(e => e.id === +id)
+      if (target) target.quantity++
     },
     minousOne (e) {
       const { id } = e.target.dataset
-      this.cart[id].quantity--
-      if (this.cart[id].quantity < 1) {
-        this.cart[id].quantity = 1
+      const target = this.cart.find(e => e.id === +id)
+      target.quantity--
+      if (target.quantity < 1) {
+        target.quantity = 1
       }
     },
     removeItem (e) {
