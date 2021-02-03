@@ -2,6 +2,7 @@
 #app
   Navbar
   main.mt-5.bg-white(role='main')
+    Carousel
     router-view
 </template>
 
@@ -24,7 +25,8 @@
 import 'bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Navbar from './components/Navbar'
+import Carousel from './components/Carousel'
 export default {
-  components: { Navbar }
+  components: { Navbar, Carousel }
 }
 </script>
