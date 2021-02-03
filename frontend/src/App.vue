@@ -1,8 +1,8 @@
 <template lang="pug">
 #app
   Navbar
+  Carousel
   main.mt-5.bg-white(role='main')
-    Carousel
     router-view
 </template>
 

@@ -1,5 +1,5 @@
 <template lang="pug">
-.bg-secondary.position-relative.overflow-hidden(style='height: 350px')
+.bg-secondary.position-relative.overflow-hidden(style='max-height: 350px')
   ol.carousel-indicators
     li(
       v-for='item in list',
@@ -21,6 +21,7 @@
     span.carousel-control-next-icon
     span.visually-hidden Next
 </template>
+
 <script>
 export default {
   data () {
@@ -33,11 +34,11 @@ export default {
         },
         {
           id: 1,
-          img: 'http://www.tigersurfshop.com.tw/ezfiles/741/1741/img/82/788599520.png'
+          img: 'https://www.worldsurfaris.com/sites/default/files/styles/slideshow-xlarge/public/IMG_3082.JPG?itok=Bk51s5vm'
         },
         {
           id: 2,
-          img: 'http://www.tigersurfshop.com.tw/ezfiles/741/1741/img/82/755904911.png'
+          img: 'https://www.worldsurfaris.com/sites/default/files/styles/slideshow_image_wide/public/feature_articles/Surf-Camp-Surfing-Holidays-Sri-Lanka-Longboard-Waves-Sea-Beach.jpg?itok=j59_odu1'
         }
       ]
     }
