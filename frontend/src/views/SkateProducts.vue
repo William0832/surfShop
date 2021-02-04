@@ -5,8 +5,11 @@
   .row
     .col.col-sm-9.col-lg-8
       .row.row-cols-2.row-cols-lg-4
-        .col.mb-4(v-for='item in skateboards', :key='item.id')
+        .col.mb-4(v-for='item in pageItems', :key='item.id')
           ProductCard(:cardItem='item', @add-to-cart='addToCart')
+
+      .row.d-flex.justify-content-center
+        Pages(:items='skateboards', @get-page-items='setPageItem')
 
     .d-none.d-sm-block.col-sm-3.col-lg-4.border-dark.border.rounded.p-0
       Chat(:addItem='addItem')
@@ -15,6 +18,8 @@
 <script>
 import Chat from '../components/Cart'
 import ProductCard from '../components/ProductCard.vue'
+import Pages from '../components/Pagination'
+
 const dummyData = {
   skateboards: [
     {
@@ -119,19 +124,23 @@ export default {
   data () {
     return {
       skateboards: [],
-      addItem: null
+      addItem: null,
+      pageItems: []
     }
   },
   created () {
     this.fetchData()
   },
-  components: { Chat, ProductCard },
+  components: { Chat, ProductCard, Pages },
   methods: {
     fetchData () {
       this.skateboards = dummyData.skateboards
     },
     addToCart (id) {
       this.addItem = this.skateboards[id]
+    },
+    setPageItem (pageItems) {
+      this.pageItems = pageItems
     }
   }
 }
