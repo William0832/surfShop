@@ -6,9 +6,19 @@ Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/skate',
-    name: 'skate',
+    path: '/',
+    name: 'home',
     component: () => import('../views/SkateProducts.vue')
+  },
+  {
+    path: '/skates',
+    name: 'skates',
+    component: () => import('../views/SkateProducts.vue')
+  },
+  {
+    path: '/skates/:id',
+    name: 'skate',
+    component: () => import('../views/ProductDetail.vue')
   },
   {
     path: '/signup',
