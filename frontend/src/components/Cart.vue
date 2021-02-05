@@ -52,12 +52,20 @@ export default {
       cart: []
     }
   },
+  created () {
+    this.loadData()
+  },
   watch: {
     addItem (nv, ov) {
+      if (this.cart.some(e => e.id === nv.id)) {
+        // console.log('already has')
+        return
+      }
       this.cart.push({
         ...nv,
         quantity: 1
       })
+      this.saveData()
     }
   },
   computed: {
@@ -69,14 +77,23 @@ export default {
     }
   },
   methods: {
-    fetchData () {
-      this.cart.push(this.addItem)
-      this.addItem = null
+    loadData () {
+      const result = localStorage.getItem('myCart')
+      if (!result) {
+        localStorage.setItem('myCart', '[]')
+        return
+      }
+      this.cart = JSON.parse(result)
+    },
+    saveData () {
+      localStorage.setItem('myCart', JSON.stringify(this.cart))
+      // console.log('set in stroage')
     },
     addOne (e) {
       const { id } = e.target.dataset
       const target = this.cart.find(e => e.id === +id)
       if (target) target.quantity++
+      this.saveData()
     },
     minousOne (e) {
       const { id } = e.target.dataset
@@ -85,11 +102,13 @@ export default {
       if (target.quantity < 1) {
         target.quantity = 1
       }
+      this.saveData()
     },
     removeItem (e) {
       const { id } = e.target.closest('button').dataset
       // console.log(e.target)
       this.cart = this.cart.filter(e => e.id !== +id)
+      this.saveData()
     }
   }
 }
