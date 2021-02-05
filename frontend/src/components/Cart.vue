@@ -57,6 +57,7 @@ export default {
   },
   watch: {
     addItem (nv, ov) {
+      if (!nv) return
       if (this.cart.some(e => e.id === nv.id)) {
         // console.log('already has')
         return

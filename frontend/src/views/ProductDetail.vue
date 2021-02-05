@@ -1,29 +1,37 @@
 <template lang="pug">
 .row
-  .col-md-12.mb-3
-    h1 {{ product.name }}
-    p.badge.badge-secondary.mr-2 {{ product.type }}
-    p.badge.badge-danger {{ product.brand }}
-  .col-lg-4
-    img.img-responsive.center-block.mb-2(
-      style='width: 250px',
-      :src='product.img'
-    )
-    .info-wrap
-      ul.list-unstyled
-        li
-          strong.mr-1 Price:
-          | {{ product.price }}
-        li
-          strong.mr-1 Size:
-          | {{ product.size }}
-  .col-lg-8
-    p {{ product.info }}
-    button.btn.btn-outline-dark.mr-2
-      i.fas.fa-cart-plus
-    button.btn.btn-outline-secondary.mr-2(@click.prevent.stop='$router.go(-1)') Back
+  .col.col-sm-9.col-lg-8
+    .row
+      .col-md-12.mb-3
+        h1 {{ product.name }}
+        p.badge.badge-secondary.mr-2 {{ product.type }}
+        p.badge.badge-danger {{ product.brand }}
+      .col-lg-4
+        img.img-responsive.center-block.mb-2(
+          style='width: 250px',
+          :src='product.img'
+        )
+        .info-wrap
+          ul.list-unstyled
+            li
+              strong.mr-1 Price:
+              | {{ product.price }}
+            li
+              strong.mr-1 Size:
+              | {{ product.size }}
+      .col-lg-8
+        p {{ product.info }}
+        button.btn.btn-outline-dark.mr-2(@click.prevent.stop='addToCart')
+          i.fas.fa-cart-plus
+        button.btn.btn-outline-secondary.mr-2(
+          @click.prevent.stop='$router.go(-1)'
+        ) Back
+
+  .d-none.d-sm-block.col-sm-3.col-lg-4.border-dark.border.rounded.p-0
+    Cart(:addItem='addItem')
 </template>
 <script>
+import Cart from '../components/Cart'
 const dummyData = {
   product: {
     id: 0,
@@ -50,7 +58,8 @@ export default {
         price: 0,
         inventory: 0,
         size: ''
-      }
+      },
+      addItem: null
     }
   },
   created () {
@@ -58,11 +67,18 @@ export default {
     // console.log(id)
     this.fetchData(id)
   },
+  components: { Cart },
   methods: {
     fetchData (id) {
       this.product = {
         ...dummyData.product
       }
+    },
+    addToCart () {
+      this.addItem = this.product
+      setTimeout(() => {
+        this.addItem = null
+      })
     }
   }
 }

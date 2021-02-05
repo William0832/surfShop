@@ -12,11 +12,11 @@
         Pages(:items='skateboards', @get-page-items='setPageItem')
 
     .d-none.d-sm-block.col-sm-3.col-lg-4.border-dark.border.rounded.p-0
-      Chat(:addItem='addItem')
+      Cart(:addItem='addItem')
 </template>
 
 <script>
-import Chat from '../components/Cart'
+import Cart from '../components/Cart'
 import ProductCard from '../components/ProductCard.vue'
 import Pages from '../components/Pagination'
 
@@ -131,13 +131,16 @@ export default {
   created () {
     this.fetchData()
   },
-  components: { Chat, ProductCard, Pages },
+  components: { Cart, ProductCard, Pages },
   methods: {
     fetchData () {
       this.skateboards = dummyData.skateboards
     },
     addToCart (id) {
       this.addItem = this.skateboards[id]
+      setTimeout(() => {
+        this.addItem = null
+      })
     },
     setPageItem (pageItems) {
       this.pageItems = pageItems
