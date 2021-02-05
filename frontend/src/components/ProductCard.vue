@@ -1,6 +1,7 @@
 <template lang="pug">
 .card
-  img.card-img-top(:src='cardItem.img', alt='skate img')
+  router-link(:to='{ name: "skate", params: { id: cardItem.id } }')
+    img.card-img-top(:src='cardItem.img', alt='skate img')
   .card-body
     p.card-text {{ cardItem.info }}
     p.card-text $ {{ cardItem.price }}
