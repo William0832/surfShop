@@ -14,7 +14,7 @@ export default {
   computed: {
     IsOrdersPath () {
       const path = this.$route.path
-      return path === '/orders'
+      return path === '/admin/orders'
     }
   }
 }
