@@ -15,7 +15,7 @@ nav.navbar.navbar-expand-lg.fixed-to.navbar-dark.bg-dark
   #navbarSupportedContent.navbar-collapse.collapse
     .ml-auto.d-flex.align-item-center
       router-link.text-white.mr-3.mt-1(
-        to='#',
+        :to='{ name: "admin-products" }',
         v-if='currentUser.role === "admin"'
       ) Admin
       router-link.text-white.mr-3.mt-1(to='#') Cart

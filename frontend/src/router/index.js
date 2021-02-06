@@ -11,6 +11,34 @@ const routes = [
     component: () => import('../views/SkateProducts.vue')
   },
   {
+    path: '/admin',
+    name: 'admin',
+    component: () => import('../views/Admin.vue'),
+    redirect: '/admin/products',
+    children: [
+      {
+        path: 'orders',
+        name: 'admin-orders',
+        component: () => import('../views/AdminOrders.vue')
+      },
+      {
+        path: 'products',
+        name: 'admin-products',
+        component: () => import('../views/AdminProducts.vue')
+      },
+      {
+        path: 'products/:id/edit',
+        name: 'admin-product-edit',
+        component: () => import('../views/AdminProductDetail.vue')
+      },
+      {
+        path: 'products/new',
+        name: 'admin-product-new',
+        component: () => import('../views/AdminProductDetail.vue')
+      }
+    ]
+  },
+  {
     path: '/skates',
     name: 'skates',
     component: () => import('../views/SkateProducts.vue')
