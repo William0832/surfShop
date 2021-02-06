@@ -1,10 +1,11 @@
 <template lang="pug">
 .row
   .col
-    table.table
+    table.table(v-if='orders.length > 0')
       thead.thead-dark
         tr
-          th(scope='col', v-for='col in orders[0].keys()') {{ col }}
+          th(scope='col', v-for='colName in colNames') {{ colName }}
+          th(scop='col') action
       tbody
         tr(v-for='order in orders', :key='order.id')
           th(scope='row') {{ order.id }}
@@ -57,6 +58,11 @@ export default {
   },
   created () {
     this.fetchData()
+  },
+  computed: {
+    colNames () {
+      return this.orders.length > 0 ? Object.keys(this.orders[1]) : []
+    }
   },
   methods: {
     fetchData () {
